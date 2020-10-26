@@ -31,6 +31,12 @@ typedef struct PhysicalBox
     Material_t _material;
 }PhysicalBox;
 
+typedef struct  WeightBox
+{
+    Box _box;
+    double _weight;
+}WeightBox;
+
 void _z9Materials4initF(Materials* materials);
 void _z9Materials10destractorF(Materials* materials);
 void _z9Materials4copyF(Materials* materials1,const Materials* materials2);
@@ -46,5 +52,11 @@ void _z11PhysicalBox4initFdddT(PhysicalBox* PhysicalBox,double l, double w, doub
 void _z11PhysicalBox4initFT(PhysicalBox* PhysicalBox,Types t);
 void _z11PhysicalBox10destractorF(PhysicalBox* PhysicalBox);
 PhysicalBox* _z11PhysicalBox10assignmentF(PhysicalBox* PhysicalBox1,const PhysicalBox* PhysicalBox2);
+
+void _z9WeightBox4initFdddd(WeightBox* weightBox,double l, double w, double h,double wgt/* = 0.0*/);
+void _z9WeightBox4copyF(WeightBox* weightBox1,const WeightBox* weightBox2);
+void _z9WeightBox10destractorF(WeightBox* weightBox);
+WeightBox* _z9WeightBox10assignmentF(WeightBox* weightBox1,const WeightBox* weightBox2);
+void _z9WeightBoxprintw(WeightBox* weightBox);
 
 #endif

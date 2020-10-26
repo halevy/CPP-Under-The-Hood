@@ -79,4 +79,33 @@ PhysicalBox* _z11PhysicalBox10assignmentF(PhysicalBox* PhysicalBox1,const Physic
     return PhysicalBox1;
 }
 
+void _z9WeightBox4initFdddd(WeightBox* weightBox,double l, double w, double h,double wgt /*= 0.0*/)
+{
+    _z3Box4initFddd((Box*)weightBox,l,w,h);
+    weightBox->_weight = wgt;
+    _z9WeightBoxprintw(weightBox);
+}
+void _z9WeightBox4copyF(WeightBox* weightBox1,const WeightBox* weightBox2)
+{
+    _z3Box4initFd((Box*)weightBox1,1);
+    weightBox1->_weight = weightBox2->_weight;
+    _z9WeightBoxprintw(weightBox1);
+}
+void _z9WeightBox10destractorF(WeightBox* weightBox)
+{
+    printf("Destructing WeightBox; ");
+    _z9WeightBoxprintw(weightBox);
+    _z3Box10destractorF((Box*)weightBox);
+}
+WeightBox* _z9WeightBox10assignmentF(WeightBox* weightBox1,const WeightBox* weightBox2)
+{
+    weightBox1->_weight = weightBox2->_weight;
+    return weightBox1;
+}
+
+void _z9WeightBoxprintw(WeightBox* weightBox)
+{
+    printf("WeightBox, weight: %f; ", weightBox->_weight);
+    _z3Box5printF((Box*)weightBox);
+}
 
