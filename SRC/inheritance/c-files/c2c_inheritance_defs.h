@@ -25,6 +25,11 @@ typedef struct Material_t
     Types _material;
 }Material_t;
 
+typedef struct PhysicalBox
+{
+    Box _box;
+    Material_t _material;
+}PhysicalBox;
 
 void _z9Materials4initF(Materials* materials);
 void _z9Materials10destractorF(Materials* materials);
@@ -34,5 +39,12 @@ void _z10Material_t10destractorF(Material_t* material_t);
 void _z10Material_t4copyF(Material_t* material_t1,const Material_t* material_t2);
 Material_t* _z10Material_t10assignmentF(Material_t* material_t1,const Material_t* material_t2);
 
+void _z11PhysicalBox4copyF(PhysicalBox* PhysicalBox1,const PhysicalBox* PhysicalBox2);
+void _z11PhysicalBox6printp(PhysicalBox* PhysicalBox);
+void _z11PhysicalBox4initFddd(PhysicalBox* PhysicalBox,double l, double w, double h);
+void _z11PhysicalBox4initFdddT(PhysicalBox* PhysicalBox,double l, double w, double h,Types t);
+void _z11PhysicalBox4initFT(PhysicalBox* PhysicalBox,Types t);
+void _z11PhysicalBox10destractorF(PhysicalBox* PhysicalBox);
+PhysicalBox* _z11PhysicalBox10assignmentF(PhysicalBox* PhysicalBox1,const PhysicalBox* PhysicalBox2);
 
 #endif
