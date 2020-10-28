@@ -50,6 +50,24 @@ void _z25doPrePostFloatDollarFixerF()
     _z23PrePostFloatDollarFixer10destractorF(&hashes);
 }
 
+void _z16doPrePostCheckerF()
+{
+    printf("\n--- start doPrePostChecker() ---\n\n");
+
+    PrePostChecker check;
+    _z14PrePostChecker4initF(&check);
+    _z14PrePostChecker24printThisSymbolUsingFuncF(&check);
+    _z14PrePostChecker23printThisSymbolDirectlyF(&check);
+    _z14PrePostChecker29printDollarSymbolByCastDirectlyF(&check);
+    _z14PrePostChecker30printDollarSymbolByScopeDirectlyF(&check);
+    _z14PrePostChecker30printDollarSymbolByCastUsingFuncF(&check);
+    _z14PrePostChecker31printDollarSymbolByScopeUsingFuncF(&check);
+
+
+    printf("\n--- end doPrePostChecker() ---\n\n");
+    _z14PrePostChecker10destractorF(&check);
+}
+
 int main()
 {
     printf("\n--- Start main() ---\n\n");
@@ -57,7 +75,8 @@ int main()
     _z14doPrePostFixerF();
     _z20doPrePostDollarFixerF();
     _z25doPrePostFloatDollarFixerF();
-
+    _z16doPrePostCheckerF();
+    
     return 0;
 }
 

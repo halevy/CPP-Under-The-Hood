@@ -53,6 +53,11 @@ typedef struct PrePostFloatDollarFixer
 
 }PrePostFloatDollarFixer;
 
+typedef struct PrePostChecker
+{
+    PrePostFloatDollarFixer prePostFloatDollarFixer;
+}PrePostChecker;
+
 extern int next_id;
 extern const char _z18PrePostDollarFixer14DEFAULT_SYMBOL;
 extern const char _z16PrePostHashFixer14DEFAULT_SYMBOL;
@@ -64,6 +69,7 @@ extern void*(*PrePostFixerVtable[])(void*);
 extern void*(*PrePostDollarFixerVtable[])(void*);
 extern void*(*PrePostHashFixerVtable[])(void*);
 extern void*(*PrePostFloatDollarFixerVtable[])(void*);
+extern void*(*PrePostCheckerVtable[])(void*);
 
 void _z13TextFormatter4initF(TextFormatter* this);
 void _z13TextFormatter10destractorF(void* this);
@@ -101,5 +107,14 @@ void _z23PrePostFloatDollarFixer10destractorF(void* this);
 void _z23PrePostFloatDollarFixer5printFf(PrePostFloatDollarFixer* this,float num);
 void _z23PrePostFloatDollarFixer5printFfc(PrePostFloatDollarFixer* this,float num, char symbol);
 char _z23PrePostFloatDollarFixer16getDefaultSymbolF(void* this);
+
+void _z14PrePostChecker4initF(PrePostChecker* this);
+void _z14PrePostChecker10destractorF(void* this);
+void _z14PrePostChecker24printThisSymbolUsingFuncF(PrePostChecker* this);
+void _z14PrePostChecker23printThisSymbolDirectlyF(PrePostChecker* this);
+void _z14PrePostChecker30printDollarSymbolByCastUsingFuncF(PrePostChecker* this);
+void _z14PrePostChecker31printDollarSymbolByScopeUsingFuncF(PrePostChecker* this);
+void _z14PrePostChecker29printDollarSymbolByCastDirectlyF(PrePostChecker* this);
+void _z14PrePostChecker30printDollarSymbolByScopeDirectlyF(PrePostChecker* this);
 
 #endif

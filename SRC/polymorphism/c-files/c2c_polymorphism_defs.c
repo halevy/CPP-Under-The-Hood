@@ -31,6 +31,11 @@ void*(*PrePostFloatDollarFixerVtable[])(void*) = {(void*(*)(void*))_z23PrePostFl
                                                   (void*(*)(void*))_z18PrePostDollarFixer5printlc,
                                                   (void*(*)(void*))_z23PrePostFloatDollarFixer16getDefaultSymbolF};
 
+void*(*PrePostCheckerVtable[])(void*) = {(void*(*)(void*))_z14PrePostChecker10destractorF,
+                                         (void*(*)(void*))_z12PrePostFixer5printFKc,
+                                         (void*(*)(void*))_z18PrePostDollarFixer5printlc,
+                                         (void*(*)(void*))_z23PrePostFloatDollarFixer16getDefaultSymbolF};
+
 void _z13TextFormatter10destractorF(void* this){}
 void _z13TextFormatter4initF(TextFormatter* this)
 {
@@ -245,4 +250,52 @@ void _z23PrePostFloatDollarFixer5printFfc(PrePostFloatDollarFixer* this,float nu
 char _z23PrePostFloatDollarFixer16getDefaultSymbolF(void* this)
 {
     return _z23PrePostFloatDollarFixer14DEFAULT_SYMBOL;
+}
+
+void _z14PrePostChecker4initF(PrePostChecker* this)
+{
+    _z23PrePostFloatDollarFixer4initF((PrePostFloatDollarFixer*)this,"[[[[ ", " ]]]]");
+    ((TextFormatter*)this)->_vptr = PrePostCheckerVtable;
+    printf("--- PrePostChecker CTOR: \"%s\"...\"%s\"\n", ((PrePostFixer*)this)->_pre,
+           ((PrePostFixer*)this)->_post);
+
+}
+void _z14PrePostChecker10destractorF(void* this)
+{
+    printf("--- PrePostChecker CTOR: \"%s\"...\"%s\"\n", ((PrePostFixer*)this)->_pre,
+           ((PrePostFixer*)this)->_post);
+    _z23PrePostFloatDollarFixer10destractorF((PrePostChecker*)this);
+}
+void _z14PrePostChecker24printThisSymbolUsingFuncF(PrePostChecker* this)
+{
+    printf("%-60s | ", "[PrePostChecker::printThisSymbolUsingFunc()]");
+    printf("Default symbol is %c\n",
+           ((pGetDefaultSymbol)((((TextFormatter*)this)->_vptr)[E_GET_DEFAULT_SYMBOL]))(this));
+}
+void _z14PrePostChecker23printThisSymbolDirectlyF(PrePostChecker* this)
+{
+    printf("%-60s | ", "[PrePostChecker::printThisSymbolDirectly()]");
+    printf("Default symbol is %c\n", _z23PrePostFloatDollarFixer14DEFAULT_SYMBOL);
+}
+void _z14PrePostChecker30printDollarSymbolByCastUsingFuncF(PrePostChecker* this)
+{
+
+    printf("%-60s | ", "[PrePostChecker::printDollarSymbolByCastUsingFunc()]");
+    printf("Default symbol is %c\n",
+           ((pGetDefaultSymbol)((((TextFormatter*)this)->_vptr)[E_GET_DEFAULT_SYMBOL]))(this));
+}
+void _z14PrePostChecker31printDollarSymbolByScopeUsingFuncF(PrePostChecker* this)
+{
+    printf("%-60s | ", "[PrePostChecker::printDollarSymbolByScopeUsingFunc()]");
+    printf("Default symbol is %c\n", _z18PrePostDollarFixer16getDefaultSymbolF(this));
+}
+void _z14PrePostChecker29printDollarSymbolByCastDirectlyF(PrePostChecker* this)
+{
+    printf("%-60s | ", "[PrePostChecker::printDollarSymbolByCastDirectly()]");
+    printf("Default symbol is %c\n", _z18PrePostDollarFixer14DEFAULT_SYMBOL);
+}
+void _z14PrePostChecker30printDollarSymbolByScopeDirectlyF(PrePostChecker* this)
+{
+    printf("%-60s | ", "[PrePostChecker::printDollarSymbolByScopeDirectly()]");
+    printf("Default symbol is %c\n", _z18PrePostDollarFixer14DEFAULT_SYMBOL);
 }
