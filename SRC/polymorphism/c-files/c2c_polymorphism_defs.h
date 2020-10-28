@@ -58,6 +58,12 @@ typedef struct PrePostChecker
     PrePostFloatDollarFixer prePostFloatDollarFixer;
 }PrePostChecker;
 
+typedef struct Multiplier
+{
+    DefaultTextFormatter defaultTextFormatter;
+    int _times;
+}Multiplier;
+
 extern int next_id;
 extern const char _z18PrePostDollarFixer14DEFAULT_SYMBOL;
 extern const char _z16PrePostHashFixer14DEFAULT_SYMBOL;
@@ -70,6 +76,7 @@ extern void*(*PrePostDollarFixerVtable[])(void*);
 extern void*(*PrePostHashFixerVtable[])(void*);
 extern void*(*PrePostFloatDollarFixerVtable[])(void*);
 extern void*(*PrePostCheckerVtable[])(void*);
+extern void*(*MultiplierVtable[])(void*);
 
 void _z13TextFormatter4initF(TextFormatter* this);
 void _z13TextFormatter10destractorF(void* this);
@@ -116,5 +123,9 @@ void _z14PrePostChecker30printDollarSymbolByCastUsingFuncF(PrePostChecker* this)
 void _z14PrePostChecker31printDollarSymbolByScopeUsingFuncF(PrePostChecker* this);
 void _z14PrePostChecker29printDollarSymbolByCastDirectlyF(PrePostChecker* this);
 void _z14PrePostChecker30printDollarSymbolByScopeDirectlyF(PrePostChecker* this);
+
+void _z10Multiplier10destractorF(void* this);
+void _z10Multiplier5printFKc(void* this,const char*);
+void _z10Multiplier4copyF(Multiplier* this,const Multiplier* other);
 
 #endif

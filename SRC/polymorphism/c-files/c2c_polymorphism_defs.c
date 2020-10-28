@@ -36,6 +36,9 @@ void*(*PrePostCheckerVtable[])(void*) = {(void*(*)(void*))_z14PrePostChecker10de
                                          (void*(*)(void*))_z18PrePostDollarFixer5printlc,
                                          (void*(*)(void*))_z23PrePostFloatDollarFixer16getDefaultSymbolF};
 
+void*(*MultiplierVtable[])(void*) = {(void*(*)(void*))_z10Multiplier10destractorF,
+                                     (void*(*)(void*))_z10Multiplier5printFKc};
+
 void _z13TextFormatter10destractorF(void* this){}
 void _z13TextFormatter4initF(TextFormatter* this)
 {
@@ -298,4 +301,25 @@ void _z14PrePostChecker30printDollarSymbolByScopeDirectlyF(PrePostChecker* this)
 {
     printf("%-60s | ", "[PrePostChecker::printDollarSymbolByScopeDirectly()]");
     printf("Default symbol is %c\n", _z18PrePostDollarFixer14DEFAULT_SYMBOL);
+}
+void _z10Multiplier10destractorF(void* this)
+{
+    Multiplier* pointToThis = this;
+    printf("--- Multiplier DTOR: times = %d\n", pointToThis->_times);
+    _z20DefaultTextFormatter10destractorF((DefaultTextFormatter*)this);
+}
+void _z10Multiplier5printFKc(void* this,const char* text)
+{
+    int i;
+    Multiplier* pointToThis = this;
+    printf("%-60s | ", "[Multiplier::print(const char*)]");
+    for (i = 0; i < pointToThis->_times; ++i)
+        printf("%s", text);
+    printf("\n");
+}
+void _z10Multiplier4copyF(Multiplier* this,const Multiplier* other)
+{
+    _z20DefaultTextFormatter4copyF((DefaultTextFormatter*)this,(DefaultTextFormatter*)other);
+    ((TextFormatter*)this)->_vptr = MultiplierVtable;
+    this->_times = other->_times;
 }
