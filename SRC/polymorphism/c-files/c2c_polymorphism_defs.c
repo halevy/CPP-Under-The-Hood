@@ -3,7 +3,8 @@
 
 int next_id = 0;
 const char _z18PrePostDollarFixer14DEFAULT_SYMBOL = '$';
-
+const char _z16PrePostHashFixer14DEFAULT_SYMBOL = '#';
+const char _z23PrePostFloatDollarFixer14DEFAULT_SYMBOL = '@';
 
 void*(*TextFormatterVtable[])(void*) = {(void*(*)(void*))_z13TextFormatter10destractorF, NULL};
 
@@ -20,6 +21,15 @@ void*(*PrePostDollarFixerVtable[])(void*) = {(void*(*)(void*))_z18PrePostDollarF
                                              (void*(*)(void*))_z18PrePostDollarFixer5printlc,
                                              (void*(*)(void*))_z18PrePostDollarFixer16getDefaultSymbolF};
 
+void*(*PrePostHashFixerVtable[])(void*) = {(void*(*)(void*))_z16PrePostHashFixer10destractorF,
+                                           (void*(*)(void*))_z12PrePostFixer5printFKc,
+                                           (void*(*)(void*))_z16PrePostHashFixer5printlcF,
+                                           (void*(*)(void*))_z16PrePostHashFixer16getDefaultSymbolF};
+
+void*(*PrePostFloatDollarFixerVtable[])(void*) = {(void*(*)(void*))_z23PrePostFloatDollarFixer10destractorF,
+                                                  (void*(*)(void*))_z12PrePostFixer5printFKc,
+                                                  (void*(*)(void*))_z18PrePostDollarFixer5printlc,
+                                                  (void*(*)(void*))_z23PrePostFloatDollarFixer16getDefaultSymbolF};
 
 void _z13TextFormatter10destractorF(void* this){}
 void _z13TextFormatter4initF(TextFormatter* this)
@@ -165,3 +175,74 @@ char _z18PrePostDollarFixer16getDefaultSymbolF(void* this)
     return _z18PrePostDollarFixer14DEFAULT_SYMBOL;
 }
 
+void _16PrePostHashFixer4initF(PrePostHashFixer* this,int prc /*= 4*/)
+{
+    _z18PrePostDollarFixer4initF((PrePostDollarFixer*)this,"===> ", " <===");
+    ((TextFormatter*)this)->_vptr = PrePostHashFixerVtable;
+    this->_precision = prc;
+    printf("--- PrePostHashFixer CTOR: \"%s\"...\"%s\", precision: %d\n", ((PrePostFixer*)this)->_pre,
+           ((PrePostFixer*)this)->_post, this->_precision);
+    printf("%-60s | ", "[PrePostHashFixer::print(double, char)]");
+    printf("%s[%c%.*f]%s\n", ((PrePostFixer*)this)->_pre, _z16PrePostHashFixer14DEFAULT_SYMBOL , this->_precision, 9999.9999, ((PrePostFixer*)this)->_post);
+
+}
+void _z16PrePostHashFixer10destractorF(void* this)
+{
+
+    printf("--- PrePostHashFixer DTOR: \"%s\"...\"%s\"\n", ((PrePostFixer*)this)->_pre,
+           ((PrePostFixer*)this)->_post);
+    _z18PrePostDollarFixer10destractorF((PrePostDollarFixer*)this);
+}
+void _z16PrePostHashFixer5printicF(PrePostHashFixer* this,int num, char symbol/*= DEFAULT_SYMBOL*/)
+{
+    printf("%-60s | ", "[PrePostHashFixer::print(int, char)]");
+    printf("-->\n");
+    printf("%-60s | ", "[PrePostHashFixer::print(double, char)]");
+    printf("%s[%c%.*f]%s\n", ((PrePostFixer*)this)->_pre, symbol, this->_precision,
+           (double)num, ((PrePostFixer*)this)->_post);
+
+}
+void _z16PrePostHashFixer5printlcF(void* this,long num, char symbol /*= DEFAULT_SYMBOL*/)
+{
+    PrePostHashFixer* pointToThis = this;
+    printf("%-60s | ", "[PrePostHashFixer::print(long, char)]");
+    printf("-->\n");
+    printf("%-60s | ", "[PrePostHashFixer::print(double, char)]");
+    printf("%s[%c%.*f]%s\n", ((PrePostFixer*)this)->_pre, symbol, pointToThis->_precision,
+           (double)num, ((PrePostFixer*)this)->_post);
+
+}
+
+char _z16PrePostHashFixer16getDefaultSymbolF(void* this)
+{
+    return _z16PrePostHashFixer14DEFAULT_SYMBOL;
+}
+void _z23PrePostFloatDollarFixer4initF(PrePostFloatDollarFixer* this,const char* prefix, const char* postfix)
+{
+    _z18PrePostDollarFixer4initF((PrePostDollarFixer*)this,prefix,postfix);
+    ((TextFormatter*)this)->_vptr = PrePostFloatDollarFixerVtable;
+    printf("--- PrePostFloatDollarFixer CTOR: \"%s\"...\"%s\"\n", ((PrePostFixer*)this)->_pre,
+           ((PrePostFixer*)this)->_post);
+}
+void _z23PrePostFloatDollarFixer10destractorF(void* this)
+{
+    printf("--- PrePostFloatDollarFixer DTOR: \"%s\"...\"%s\"\n", ((PrePostFixer*)this)->_pre,
+           ((PrePostFixer*)this)->_post);
+    _z18PrePostDollarFixer10destractorF((PrePostDollarFixer*)this);
+}
+void _z23PrePostFloatDollarFixer5printFf(PrePostFloatDollarFixer* this,float num)
+{
+    printf("%-60s | ", "[PrePostFloatDollarFixer::print(float)]");
+    printf("-->\n");
+    _z23PrePostFloatDollarFixer5printFfc(this,num, _z23PrePostFloatDollarFixer14DEFAULT_SYMBOL);
+
+}
+void _z23PrePostFloatDollarFixer5printFfc(PrePostFloatDollarFixer* this,float num, char symbol)
+{
+    printf("%-60s | ", "[PrePostFloatDollarFixer::print(float, char)]");
+    printf("%s%c%.2f%s\n", ((PrePostFixer*)this)->_pre, symbol, num, ((PrePostFixer*)this)->_post);
+}
+char _z23PrePostFloatDollarFixer16getDefaultSymbolF(void* this)
+{
+    return _z23PrePostFloatDollarFixer14DEFAULT_SYMBOL;
+}

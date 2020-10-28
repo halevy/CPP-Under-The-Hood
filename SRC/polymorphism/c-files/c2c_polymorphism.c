@@ -29,7 +29,26 @@ void _z20doPrePostDollarFixerF()
     printf("\n--- end doPrePostDollarFixer() ---\n\n");
     _z18PrePostDollarFixer10destractorF(&asterisks);
 }
+void _z25doPrePostFloatDollarFixerF()
+{
+    printf("\n--- start doPrePostFloatDollarFixer() ---\n\n");
 
+    PrePostFloatDollarFixer hashes;
+    PrePostDollarFixer hashes2;
+    _z23PrePostFloatDollarFixer4initF(&hashes,"### ", " ###");
+    _z23PrePostFloatDollarFixer5printFf(&hashes,-777);
+    _z23PrePostFloatDollarFixer5printFfc(&hashes,350, '#');
+    _z23PrePostFloatDollarFixer5printFf(&hashes,3.14f);
+
+    _z18PrePostDollarFixer4copyF(&hashes2,(PrePostDollarFixer*)&hashes);
+    _z18PrePostDollarFixer5printdc(&hashes2,7.5,'$');
+    _z18PrePostDollarFixer5printFic(&hashes2,100,'$');
+
+
+    printf("\n--- start doPrePostFloatDollarFixer() ---\n\n");
+    _z18PrePostDollarFixer10destractorF(&hashes2);
+    _z23PrePostFloatDollarFixer10destractorF(&hashes);
+}
 
 int main()
 {
@@ -37,9 +56,7 @@ int main()
 
     _z14doPrePostFixerF();
     _z20doPrePostDollarFixerF();
-
-    printf("\n--- End main() ---\n\n");
-
+    _z25doPrePostFloatDollarFixerF();
 
     return 0;
 }

@@ -41,15 +41,29 @@ typedef struct PrePostDollarFixer
     PrePostFixer prePostFixer;
 }PrePostDollarFixer;
 
+typedef struct PrePostHashFixer
+{
+    PrePostDollarFixer prePostDollarFixer;
+    int _precision;
+}PrePostHashFixer;
+
+typedef struct PrePostFloatDollarFixer
+{
+    PrePostDollarFixer prePostDollarFixer;
+
+}PrePostFloatDollarFixer;
 
 extern int next_id;
 extern const char _z18PrePostDollarFixer14DEFAULT_SYMBOL;
-
+extern const char _z16PrePostHashFixer14DEFAULT_SYMBOL;
+extern const char _z23PrePostFloatDollarFixer14DEFAULT_SYMBOL;
 
 extern void*(*TextFormatterVtable[])(void*);
 extern void*(*DefaultTextFormatterVtable[])(void*);
 extern void*(*PrePostFixerVtable[])(void*);
 extern void*(*PrePostDollarFixerVtable[])(void*);
+extern void*(*PrePostHashFixerVtable[])(void*);
+extern void*(*PrePostFloatDollarFixerVtable[])(void*);
 
 void _z13TextFormatter4initF(TextFormatter* this);
 void _z13TextFormatter10destractorF(void* this);
@@ -76,6 +90,16 @@ void _z18PrePostDollarFixer5printlc(void* this,long num, char symbol /*= DEFAULT
 void _z18PrePostDollarFixer5printdc(PrePostDollarFixer* this,double num, char symbol/*= DEFAULT_SYMBOL*/);
 char _z18PrePostDollarFixer16getDefaultSymbolF(void* this);
 
+void _16PrePostHashFixer4initF(PrePostHashFixer* this,int prc /*= 4*/);
+void _z16PrePostHashFixer10destractorF(void* this);
+void _z16PrePostHashFixer5printicF(PrePostHashFixer* this,int num, char symbol/*= DEFAULT_SYMBOL*/);
+void _z16PrePostHashFixer5printlcF(void* this,long num, char symbol /*= DEFAULT_SYMBOL*/);
+char _z16PrePostHashFixer16getDefaultSymbolF(void* this);
 
+void _z23PrePostFloatDollarFixer4initF(PrePostFloatDollarFixer* this,const char* prefix, const char* postfix);
+void _z23PrePostFloatDollarFixer10destractorF(void* this);
+void _z23PrePostFloatDollarFixer5printFf(PrePostFloatDollarFixer* this,float num);
+void _z23PrePostFloatDollarFixer5printFfc(PrePostFloatDollarFixer* this,float num, char symbol);
+char _z23PrePostFloatDollarFixer16getDefaultSymbolF(void* this);
 
 #endif
