@@ -29,11 +29,27 @@ typedef struct DefaultTextFormatter
     int _id;
 }DefaultTextFormatter;
 
+typedef struct PrePostFixer
+{
+    DefaultTextFormatter defaultTextFormatter;
+    char* _pre;
+    char* _post;
+}PrePostFixer;
+
+typedef struct PrePostDollarFixer
+{
+    PrePostFixer prePostFixer;
+}PrePostDollarFixer;
+
 
 extern int next_id;
+extern const char _z18PrePostDollarFixer14DEFAULT_SYMBOL;
+
 
 extern void*(*TextFormatterVtable[])(void*);
 extern void*(*DefaultTextFormatterVtable[])(void*);
+extern void*(*PrePostFixerVtable[])(void*);
+extern void*(*PrePostDollarFixerVtable[])(void*);
 
 void _z13TextFormatter4initF(TextFormatter* this);
 void _z13TextFormatter10destractorF(void* this);
@@ -44,6 +60,21 @@ void _z20DefaultTextFormatter4initF(DefaultTextFormatter* this);
 DefaultTextFormatter* _z20DefaultTextFormatter10assignmentF(DefaultTextFormatter* this,const DefaultTextFormatter* other);
 void _z20DefaultTextFormatter5printFKc(void* this,const char* text);
 DefaultTextFormatter* generateFormatterArray();
+
+void _z12PrePostFixer4initF(PrePostFixer* this,const char* prefix, const char* postfix);
+void _z12PrePostFixer4copyF(PrePostFixer* this,const PrePostFixer* other);
+void _z12PrePostFixer10destractorF(void* this);
+void _z12PrePostFixer5printFKc(void* this,const char* text);
+void _z12PrePostFixer5printFlc(void* this,long num, char symbol /*= '\0'*/);
+char _z12PrePostFixer16getDefaultSymbolF(void* this);
+
+void _z18PrePostDollarFixer4initF(PrePostDollarFixer* this,const char* prefix, const char* postfix);
+void _z18PrePostDollarFixer4copyF(PrePostDollarFixer* this,const PrePostDollarFixer* other);
+void _z18PrePostDollarFixer10destractorF(void* this);
+void _z18PrePostDollarFixer5printFic(PrePostDollarFixer* this,int num, char symbol /*= DEFAULT_SYMBOL*/);
+void _z18PrePostDollarFixer5printlc(void* this,long num, char symbol /*= DEFAULT_SYMBOL*/);
+void _z18PrePostDollarFixer5printdc(PrePostDollarFixer* this,double num, char symbol/*= DEFAULT_SYMBOL*/);
+char _z18PrePostDollarFixer16getDefaultSymbolF(void* this);
 
 
 
