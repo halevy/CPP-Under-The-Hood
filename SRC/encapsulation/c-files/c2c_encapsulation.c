@@ -129,6 +129,16 @@ int main()
 
 
     printf("\n--- End main() ---\n\n");
+
+    if(_z9flagBox99V){
+        _z9flagBox99V++;
+        _z8thisFuncF();
+    }
+
+    if(_z9flagBox88V){
+        _z9flagBox88V++;
+        _z8thatFuncF();
+    }
     _z3Box10destractorF(&_z8largeBoxV);
 
     return 0;
